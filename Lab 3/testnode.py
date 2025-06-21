@@ -1,4 +1,10 @@
+"""
+Yao Xu
+6/21/2025
 
+This program completes a function named makeTwoWay() so that it takes the head of a singly linked structures and returns
+the head of a double linked structure.
+"""
 from node import Node, TwoWayNode
 
 def printStructure(head):
