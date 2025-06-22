@@ -1,4 +1,15 @@
 """
+Yao Xu
+6/22/2025
+
+In this program I implemented two class methods as __contains__() and clone(). The __contains__() method will check if the
+item is in the bag or not. The clone() method will create a copy of the bag on which it is called. I also simplified
+the remove() method by using the __contains__() method to check if the to be removed item is in the bag, and get the position
+using the position variable self.targetIndex.
+"""
+
+
+"""
 File: arraybag.py
 Author: Ken Lambert
 """
@@ -29,7 +40,20 @@ class ArrayBag(AbstractBag):
             cursor += 1
 
     def __contains__(self, item):
-        """Returns True if item is in self or False otherwise."""
+        """Returns True if item is in self or False otherwise. It also sets self.targetIndex to the found position or -1
+        if not found.
+        Input:
+            item - the item to check
+        Output:
+            True if item is in self, False otherwise
+        """
+        self.targetIndex = 0
+        for targetItem in self:
+           if targetItem == item:
+               return True
+           self.targetIndex += 1
+        self.targetIndex = -1
+        return False
         
         
     # Mutator methods
@@ -77,5 +101,25 @@ class ArrayBag(AbstractBag):
             for i in range(len(self)):
                 temp[i] = self.items[i]
             self.items = temp
-         
-        
+
+    def clone(self):
+        """Returns a copy of self."""
+        return ArrayBag(self)
+
+def main():
+    """
+    This is the main function to test the __contains__(), remove() and clone() methods.
+    """
+    a = ArrayBag([1, 2, 3, 4, 5, 6, 7, 8])
+    print(a)
+    a.remove(3)
+    print(a)
+    a.remove(1)
+    print(a)
+    b = a.clone()
+    print(b)
+    print(a == b)
+    print(a is b)
+
+if __name__ == "__main__":
+    main()
