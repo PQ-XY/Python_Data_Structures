@@ -1,5 +1,8 @@
 """
-File: maze.py
+Yao Xu
+06/27/2025
+
+In this program, we implemented three methods: getMazeFromFile(), findStartPos() and getOut().
 """
 
 def main():
