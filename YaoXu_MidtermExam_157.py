@@ -6,9 +6,9 @@
 # Summer 2025 - MIDTERM
 # Chapter 5: Programming  Exercise 17. Prime Number List
 # 
-# Date: [Put the date here]   <=========
+# Date: [7/1/2025]   <=========
 #
-# Author: [Put your name here] <======== IMPORTANT
+# Author: [Yao Xu] <======== IMPORTANT
 #
 ########################################
 
@@ -24,14 +24,22 @@ def main():
     # IF number is prime: print (number, '\t', 'prime')
     # ELSE: print (number, '\t', 'not prime')
 
-    WRITE the rest of YOUR CODE for the main() function HERE  
+    for i in range(1, totalNumbers + 1):
+        if is_prime(i):
+            print(i, '\t', 'prime')
+        else:
+            print(i, '\t', 'not prime')
 
 # define the is_prime function 
 # it receives a number as a parameter,
 # and returns True if number is prime, False otherwise. 
 def is_prime(number):
-    
-    WRITE YOUR CODE for the is_prime(number) function HERE 
+    if number <= 1:
+        return False
+    for i in range(2, number):
+        if number % i == 0:
+            return False
+    return True
 
 # Call the main function.
 main()
