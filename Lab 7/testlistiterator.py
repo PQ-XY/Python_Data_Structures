@@ -32,7 +32,7 @@ def test(listType):
     listIterator.first()
     for count in range(3):
             listIterator.next()
- #   listIterator.insert(10)
+ #  listIterator.insert(10)
     print(lyst)
     print("Removing 2: ", end="")
     listIterator.first()
