@@ -8,7 +8,8 @@ Yao Xu
 
 In this program, I implemented two methods--rebalance() and isBalanced(). 
 
-In the rebalance() method, 
+In the rebalance() method, I first collect all the elements of the tree in the sorted order by using the inorder traversal.
+Then I clear the existing tree and rebuild it by recursively inserting the middle element of each list segment.
 
 In the isBalanced() method, it is not strict. For example, 
                              1
