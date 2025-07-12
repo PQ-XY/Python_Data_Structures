@@ -2,6 +2,28 @@
 File: linkedbst.py
 Adds a method to rebalance the tree.
 """
+"""
+Yao Xu
+7/11/2025
+
+In this program, I implemented two methods--rebalance() and isBalanced(). 
+
+In the rebalance() method, 
+
+In the isBalanced() method, it is not strict. For example, 
+                             1
+                            |  |
+                           2   3
+                           |
+                          4
+                         | 
+                        5
+this tree height is 3. 2 *log(len(self) + 1, 2) - 1 = 4.17. 3 < 4.17, so the method return True. But this is not balanced.
+The definition states that for every node, the heights of its left and right subtrees differ by at most 1. In the example
+above, the left subtree and right subtree of the root is 2. 
+In order to make this method a strict check, we need go with the definition. We need to check every node in the tree that 
+the heights of its left and right subtrees differ by at most 1 recursively. In my implementation, I used preorder. 
+"""
 
 from abstractcollection import AbstractCollection
 from bstnode import BSTNode
@@ -258,9 +280,59 @@ class LinkedBST(AbstractCollection):
             h -= 1
         return h
 
+    def rebalance(self):
+        """
+        Rebalances the tree so that it becomes height-balanced, with minimal height for the current set of elements.
+        """
+        val_list = list(self.inorder())
+        self.clear()
+
+        def build_tree(vals):
+            """base case"""
+            if len(vals) == 0:
+                return
+            mid = len(vals) // 2
+            self.add(vals[mid])
+            build_tree(vals[:mid])
+            build_tree(vals[mid + 1:])
+
+        build_tree(val_list)
+
     def isBalanced(self):
-        """Returns True if the tree is balanced or False otherwise.
-        t is balanced if t.height() < 2 * log2(len(t) + 1) - 1."""
-        return self.height() < 2 *log(len(self) + 1, 2) - 1
+        """
+        Returns True if the tree is balanced or False otherwise.
+        We are using a helper function to determine if a tree is balanced for every node of the tree recursively.
+        """
+        def recurse(node):
+            """base case"""
+            if node == None:
+                return 0, True
+            left_height, left_is_balanced = recurse(node.left)
+            right_height, right_is_balanced = recurse(node.right)
+            balanced = (left_is_balanced and right_is_balanced and abs(left_height - right_height) <= 1)
+            return max(left_height, right_height) + 1, balanced
+        height, is_balanced = recurse(self.root)
+        return is_balanced
+
+if __name__ == "__main__":
+    """
+    This is a driver program for testing the isBalanced() function and rebalance() function.
+    """
+
+    tree = LinkedBST()
+
+    """create an imbalanced tree"""
+    for i in range (0, 10):
+        tree.add(i)
+
+    print(f'Current tree: \n{tree}')
+    print(f'Is balanced?: {tree.isBalanced()}')
+    print(f'Tree height: {tree.height()}')
+
+    tree.rebalance()
+
+    print(f'Current tree: \n{tree}')
+    print(f'Is balanced?: {tree.isBalanced()}')
+    print(f'Tree height: {tree.height()}')
 
 
