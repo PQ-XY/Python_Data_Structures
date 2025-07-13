@@ -6,8 +6,9 @@ Defines and tests the all pairs shortest paths algorithm of Floyd.
 """
 Yao Xu
 07/13/2025
-
-
+In this program, I implemented allPairsShortestPaths() method using Floyd's algorithm. The method expects a distance matrix 
+for a graph as an argument. Then it modifies this matrix to contain the shortest paths between any vertices that are 
+connected by paths.
 """
 
 from graph import LinkedDirectedGraph
@@ -34,7 +35,18 @@ def addWithInfinity(a, b):
 
 # Define a function that uses Floyd's algorithm
 def allPairsShortestPaths(matrix):
-    # your code here
+    """
+    In this method, I am using Floyd's algorithm. I traverse the distance matrix, replacing the value in each cell with
+    minimum-distance path that connects the two associated vertices, if a path exists. If no path exists, the value of
+    the cell remains at infinity.
+    """
+    n = matrix.getHeight()
+    for i in range(n):
+        for r in range(n):
+            for c in range(n):
+                if isLessWithInfinity(addWithInfinity(matrix[r][i], matrix[i][c]), matrix[r][c]):
+                    matrix[r][c] = addWithInfinity(matrix[r][i], matrix[i][c])
+
 
 # Define a function to print a labeled distance matrix
 def printDistanceMatrix(matrix, table):
