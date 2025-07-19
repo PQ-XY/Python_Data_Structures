@@ -2,7 +2,7 @@
 File: model.py
 The model for testing graph-processing algorithms.
 
-The programs modify the run() method to perform input validation for the grpah
+The programs modify the run() method to perform input validation for the graph
 before running the algorithm on it.
 """
 
