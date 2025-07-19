@@ -2,7 +2,7 @@
 File: model.py
 The model for testing graph-processing algorithms.
 
-The programs modify the run() method to perform input validation for the graph
+The programs modify the run() method to perform input validation for the grpah
 before running the algorithm on it.
 """
 
@@ -87,10 +87,10 @@ class GraphDemoModel(object):
         
         # Input validation for the graph
         if algorithm.__name__  == "topoSort": # must be a DAG
-            if not self.isDirected() or self.hasCycle():
+            if not self.graph.isDirected() or self.graph.hasCycle():
                 raise ValueError("Invalid graph! The graph must be a DAG")
         elif algorithm.__name__  == "spanTree": # must be undirected connected graph and are weighted
-            if not self.isConnected() or self.isDirected():
+            if not self.graph.isConnected(self.startLabel) or self.graph.isDirected():
                 raise ValueError("Invalid graph! The graph must be undirected connected")
         return algorithm(self.graph, self.startLabel)
         

@@ -2,7 +2,7 @@
 File: graph.py
 Project 12.8
 
-The program adds three methods in Class LinkedDirectedGraph():
+The program adds three methods in Calss LinkedDirectedGraph():
     isDirected() : Return True if the graph is directed or False otherwise.
     hasCycle() : Return True if the graph has cycle or False otherwise. 
     isConnected() : Return True if the graph is connected or False otherwise.
@@ -69,7 +69,7 @@ class LinkedEdge(object):
           
     def __str__(self):
         """Returns the string representation of the edge."""
-        return str(self.vertex1) + "-" + \
+        return str(self.vertex1) + ">" + \
                str(self.vertex2)   + ":" + \
                str(self.weight)
 
