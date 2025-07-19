@@ -6,6 +6,13 @@ The program adds three methods in Calss LinkedDirectedGraph():
     isDirected() : Return True if the graph is directed or False otherwise.
     hasCycle() : Return True if the graph has cycle or False otherwise. 
     isConnected() : Return True if the graph is connected or False otherwise.
+    
+Other added methods:
+    LinkedEdge(): 
+        getFromVertex() : Returns the edge's start vertex.
+        __lt__ : Supports comparsion edges by weight
+    
+        
 """
 
 from abstractcollection import AbstractCollection
@@ -67,6 +74,9 @@ class LinkedEdge(object):
         """Sets the weight on the edge to weight."""
         self.weight = weight     
           
+    def __lt__(self, other):
+        return self.getWeight() < other.getWeight()
+
     def __str__(self):
         """Returns the string representation of the edge."""
         return str(self.vertex1) + ">" + \

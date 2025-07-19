@@ -110,7 +110,7 @@ def repairQueue(g, startLabel = None):
         
         from_v = edge.getFromVertex()
         to_v = edge.getToVertex()
-        key = tuple(sorted((from_v, to_v))) # works for undirected edged to avoid duplicate addition
+        key = tuple(sorted((from_v.getLabel(), to_v.getLabel()))) # works for undirected edged to avoid duplicate addition
         
         if key not in visited_edges:
             pq.add((edge.getWeight(),key))
@@ -168,7 +168,7 @@ def shortestPaths(g, startLabel):
     return {
         label: {
             "edge": edge,
-            "cost": distances[label]
+            "cost": distances[neighbor]
         }
         for label, edge in predecessors.items()
     }
