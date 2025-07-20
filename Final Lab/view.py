@@ -27,21 +27,26 @@ class GraphDemoView(object):
                 self.getFromKeyboard()
             elif command == 2:
                 self.getFromFile()
+                print("-"*50)
             elif command == 3:
                 print("Current Network:\n", self.model.getGraph())
+                print("-"*50)
             elif command == 4:
                 result = self.model.run(shortestPaths)
                 print("\nShortest Paths from the start vertex:")
                 for vertex, info in result.items():
                     print(f"To {vertex}: via {info['edge']}, cost = {info['cost']}")
+                print("-"*50)
             elif command == 5:
-              print("\nMinimum Spanning Tree Edges:")
+              print("\nMost cost-effective utility network(undirected MST):")
               for edge in self.model.run(spanTree):
                   print(edge)
+              print("-"*50)
             elif command == 6:
                 print("\nRepair Priority:")
                 for urgency, (v1, v2) in self.model.run(repairQueue):
                     print(f"Urgency {urgency}: {v1} <-> {v2}")
+                print("-"*50)
             else:
                 break
 
