@@ -168,7 +168,7 @@ def shortestPaths(g, startLabel):
     return {
         label: {
             "edge": edge,
-            "cost": distances[neighbor]
+            "cost": distances[label]
         }
         for label, edge in predecessors.items()
     }

@@ -1,6 +1,13 @@
+"""
+File: minheap.py
+
+This program implements a MinHeap class.
+"""
+
 class MinHeap:
 
     def __init__(self):
+        """Using list as the underlying data structure."""
         self.heap = []
 
     def isEmpty(self):
@@ -30,15 +37,18 @@ class MinHeap:
         return sorted(self.heap) == sorted(other.heap)
 
     def peek(self):
+        """Returns the topmost element in the heap."""
         if self.isEmpty():
             raise IndexError("heap is empty")
         return self.heap[0]
 
     def add(self, item):
+        """Inserts a new item into the heap."""
         self.heap.append(item)
         self.bubble_up(len(self.heap) - 1)
 
     def pop(self):
+        """Removes and returns the topmost element from the heap."""
         if self.isEmpty():
             raise IndexError("heap is empty")
         self.swap(0, len(self.heap) - 1)
@@ -50,12 +60,14 @@ class MinHeap:
         self.heap[i], self.heap[j] = self.heap[j], self.heap[i]
 
     def bubble_up(self, i):
+        """Helper function for adding a new item to the heap."""
         parent = (i - 1) // 2
         while i > 0 and self.heap[i] < self.heap[parent]:
             self.swap(i, parent)
             self.bubble_up(parent)
 
     def bubble_down(self, i):
+        """Helper function for removing an item from the heap."""
         left = 2 * i + 1
         right = 2 * i + 2
         smallest = i

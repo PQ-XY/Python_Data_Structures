@@ -3,7 +3,7 @@ Test Driver for Smart City Utility Network Optimizer
 """
 
 from model import GraphDemoModel
-from algorithm import spanTree, repairQueue
+from algorithm import spanTree, repairQueue, shortestPaths
 
 def display_repair_queue(queue):
     for item in queue:
@@ -48,6 +48,26 @@ def case_2_repair_queue():
     for urgency, (v1, v2) in repair_tasks:
         print(f"Urgency {urgency}: {v1} <-> {v2}")
 
+def case_3_shortest_paths():
+    print("\n===== Case 3: Find Shortest Paths From Starting Vertice =====")
+    model = GraphDemoModel()
+
+    # Sample undirected graph with weight on edge representing distance from one vertice to another
+    graph_input = "A>B;2 B>A;2 A>D;7 D>A;7 B>C;3 C>B;3 B>D;4 D>B;4 C>F;1 F>C;1 D>E;2 E>D;2 D>F;1 F>D;1 E>F;5 F>E;5"
+    start_vertex = "A"
+
+    msg = model.createGraph(graph_input, start_vertex)
+    print("Graph creation:", msg)
+    print("Original Graph:\n", model.getGraph())
+
+    result = model.run(shortestPaths)
+
+    print(f'\nShortest Paths from {start_vertex}:')
+    for vertex, info in result.items():
+        print(f"To {vertex}: via {info['edge']}, cost = {info['cost']}")
+
+
 if __name__ == "__main__":
     case_1_mst()
     case_2_repair_queue()
+    case_3_shortest_paths()

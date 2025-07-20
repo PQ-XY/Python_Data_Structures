@@ -1,8 +1,7 @@
 """
 File: graph.py
-Project 12.8
 
-The program adds three methods in Calss LinkedDirectedGraph():
+The program adds three methods in Class LinkedDirectedGraph():
     isDirected() : Return True if the graph is directed or False otherwise.
     hasCycle() : Return True if the graph has cycle or False otherwise. 
     isConnected() : Return True if the graph is connected or False otherwise.
@@ -10,7 +9,7 @@ The program adds three methods in Calss LinkedDirectedGraph():
 Other added methods:
     LinkedEdge(): 
         getFromVertex() : Returns the edge's start vertex.
-        __lt__ : Supports comparsion edges by weight
+        __lt__ : Supports comparison edges by weight
     
         
 """

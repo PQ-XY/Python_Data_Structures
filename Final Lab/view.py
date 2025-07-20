@@ -3,7 +3,7 @@ File: view.py
 The view for testing graph-processing algorithms.
 """
 from model import GraphDemoModel
-from algorithm import shortestPaths, spanTree, topoSort
+from algorithm import shortestPaths, spanTree, topoSort, repairQueue
 
 class GraphDemoView(object):
     """The view class for the application"""
@@ -13,28 +13,35 @@ class GraphDemoView(object):
 
     def run(self):
         """Menu-driven command loop for the app."""
-        menu = "Main menu\n" + \
-               " 1 Input a graph from the keyboard\n" + \
-               " 2 Input a graph from a file\n" + \
-               " 3 View the current graph\n" \
-               " 4 Single-source shortest paths\n" \
-               " 5 Minimum spanning tree\n" \
-               " 6 Exit the program\n"
+        menu = "\nMain menu\n" + \
+               " 1 Input a smart city utility network from the keyboard\n" + \
+               " 2 Input a smart city utility network from a file\n" + \
+               " 3 View the current smart city utility network\n" \
+               " 4 Find shortest paths from start point\n" \
+               " 5 Build the most cost-effective utility layout\n" \
+               " 6 Generate repair priority list\n" \
+               " 7 Exit the program\n"
         while True:
-            command = self.getCommand(6, menu)
+            command = self.getCommand(7, menu)
             if command == 1:
                 self.getFromKeyboard()
             elif command == 2:
                 self.getFromFile()
             elif command == 3:
-                print(self.model.getGraph())
+                print("Current Network:\n", self.model.getGraph())
             elif command == 4:
-                print("Paths:\n",
-                  self.model.run(shortestPaths))
+                result = self.model.run(shortestPaths)
+                print("\nShortest Paths from the start vertex:")
+                for vertex, info in result.items():
+                    print(f"To {vertex}: via {info['edge']}, cost = {info['cost']}")
             elif command == 5:
-                print("Tree:",
-                    " ".join(map(str,
-                            self.model.run(spanTree))))
+              print("\nMinimum Spanning Tree Edges:")
+              for edge in self.model.run(spanTree):
+                  print(edge)
+            elif command == 6:
+                print("\nRepair Priority:")
+                for urgency, (v1, v2) in self.model.run(repairQueue):
+                    print(f"Urgency {urgency}: {v1} <-> {v2}")
             else:
                 break
 
@@ -74,3 +81,7 @@ class GraphDemoView(object):
                 print(self.model.createGraph(rep, startLabel))
         except FileNotFoundError:
             print("File not found.")
+
+if __name__ == "__main__":
+    app = GraphDemoView()
+    app.run()
