@@ -6,7 +6,7 @@
 # CSC 157
 # Dept. of CS - OAKTON COLLEGE
 #
-# Author: [Put your name here]
+# Author: [Yao Xu]
 #
 ########################################
 
@@ -19,10 +19,16 @@
 firstTime = True
 # min & max must be initalized in the loop
 
+"""initiate variables"""
+total = 0
+average = 0.0
+min = 0
+max = 0
+
 fileName = "numbers.txt"
 
 # Open the numbers.txt file
-inFile = open(fileName, mode="r")
+inFile = open(numbers.txt, mode="r")
 
 # In the following for-loop read the ints in the numbers.txt file and
 # compute  their total, average, min, and max 
@@ -31,6 +37,7 @@ for line in inFile:
     # Find min, max, average, total in this loop
     # Remember: min & max must be initialized in the oop
     #
+
 
 inFile.close()
 
