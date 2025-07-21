@@ -25,50 +25,34 @@ count = 0
 average = 0.0
 
 fileName = "numbers.txt"
+numbers = []
 
 # Open the numbers.txt file
 inFile = open('numbers.txt', mode="r")
 
 # In the following for-loop read the ints in the numbers.txt file and
-# compute  their total, average, min, and max 
+# compute  their total, average, min, and max
 for line in inFile:
     #
     # Find min, max, average, total in this loop
     # Remember: min & max must be initialized in the loop
     #
     line_nums = list(map(int, line.split()))
+    numbers.extend(line_nums)
 
-    #Initialize min and max
-    if firstTime and line_nums:
-        min = line_nums[0]
-        max = line_nums[0]
-        firstTime = False
-
-    for i in line_nums:
-        total += i
-        count += 1
-
-        #update min and max
-        if i < min:
-            min = i
-        if i > max:
-            max = i
-
-    #Calculate average with valid count value
-    if count > 0:
-        average = total / count
-    else:
-        average = 0
+numbers.sort()
+min = numbers[0]
+max = numbers[-1]
+total = sum(numbers)
+average = total / len(numbers)
 
 inFile.close()
 
 # Display the:
-print("Total number of integers: ", count)
+print("Total numbers of integers: ", len(numbers))
 print("Total: ", total)
 print("Average: ", average)
 print("Minimum: ", min)
 print("Maximum: ", max)
 
 print("\nDone")
-
-
