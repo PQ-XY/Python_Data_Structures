@@ -1,0 +1,45 @@
+########################################
+#
+# Final Exam:
+# Type the code to solve this exam as specified
+#
+# CSC 157
+# Dept. of CS - OAKTON COLLEGE
+#
+# Author: [Put your name here]
+#
+########################################
+
+# Must use the following variables :
+# total - for the sum of all the ints
+# average - for the average of all the ints
+
+# min - for the minimum of all the ints
+# max - for the maximum of all the ints
+firstTime = True
+# min & max must be initalized in the loop
+
+fileName = "numbers.txt"
+
+# Open the numbers.txt file
+inFile = open(fileName, mode="r")
+
+# In the following for-loop read the ints in the numbers.txt file and
+# compute  their total, average, min, and max 
+for line in inFile:
+    #
+    # Find min, max, average, total in this loop
+    # Remember: min & max must be initialized in the oop
+    #
+
+inFile.close()
+
+# Display the: 
+print("Total: ", total)
+print("Average: ", average)
+print("Minimum: ", min)
+print("Maximum: ", max)
+
+print("\nDone")
+
+
